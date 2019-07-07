@@ -1,0 +1,9 @@
+{
+  "token": "NTk1NDQwNzEwOTUwNTg0MzQw.XRs2vA.sIi7eCFWydruakI_IfM5aML8eg0",
+  "version": "1.0",
+  "botName": "Blackhole",
+  "sqlHost": "localhost",
+  "sqlUser": "root",
+  "sqlPassword": "",
+  "sqlDatabase": "blackhole"
+}

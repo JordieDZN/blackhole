@@ -1,0 +1,13 @@
+{
+  "cmdDisabled": "this command has been internally disabled.",
+  "cmdWrongChannel": "this command can only be used in",
+  "cmdIncorrectUsage": "incorrect usage.",
+  "cmdCannotBeUsedHere": "this command cannot be used here.",
+  "terminateCmdYouHaveTerminated": "you have terminated **{a}'s** role of `{b}`",
+  "messageEventSupportInfo": "for help, please refer to {a}.",
+  "option0": "to invite **Blackhole** to your server visit <http://blackholebot.com/invite>.",
+  "option1": "for a list of commands please visit <http://blackholebot.com/commands>.\nIf you need further help with a specific command please use **b!help <command>**.",
+  "option2": "you can now access {a}. Please describe the bug for our staff in the channel, we will be in contact as soon as possible.",
+  "option3": "please link your Discord with Patreon here: <https://patreon.com/settings/account>, if that doesn't work ensure you are logged into the correct account at <https://discordapp.com/login>.",
+  "option4": "you can now access {a}. Please describe the bug for our staff in the channel, we will be in contact as soon as possible."
+}

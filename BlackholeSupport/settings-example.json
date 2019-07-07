@@ -1,0 +1,9 @@
+{
+  "token": "token here",
+  "botVersion": "1.0",
+  "botName": "BlackholeSupport",
+  "sqlHost": "sql host",
+  "sqlUser": "sql user",
+  "sqlPassword": "sql password",
+  "sqlDatabase": "sql database"
+}

@@ -1,8 +1,8 @@
-./Blackhole/settings.json
-./Blackhole/node_modules
-./Blackhole/package.json
-./Blackhole/package-lock.json
-./BlackholeSupport/node_modules
-./BlackholeSupport/package.json
-./BlackholeSupport/package-lock.json
-./BlackholeSupport/settings.json
+Blackhole/settings.json
+Blackhole/node_modules
+Blackhole/package.json
+Blackhole/package-lock.json
+BlackholeSupport/node_modules
+BlackholeSupport/package.json
+BlackholeSupport/package-lock.json
+BlackholeSupport/settings.json

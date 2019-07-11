@@ -18,7 +18,7 @@ exports.run = (client, message, args, sql, Discord, languageFile, prefix, crossB
 
   if(role == null) {
 
-    message.channel.send(`${crossBox} | **${message.author.username}**, ${languageFile.terminateCmdCannotBeUsedHere}`);
+    message.channel.send(`${crossBox} | **${message.author.username}**, ${languageFile.cmdCannotBeUsedHere}`);
     return;
 
   }
@@ -31,7 +31,7 @@ exports.run = (client, message, args, sql, Discord, languageFile, prefix, crossB
       message.delete(15000);
 
     });
-    
+
     return;
 
   }

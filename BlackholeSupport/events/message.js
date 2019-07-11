@@ -1,55 +1,89 @@
 const settings = require("../settings.json");
 let prefix = `b!!`;
-let languageFile = require('../languages/es.json');
+let languageFile = require('../languages/en.json');
 
 module.exports = (Discord, message, sql) => {
+
+  if(message.channel.id == "425076843419533323") {
+
+    message.delete(15000).catch(err => {
+      //do nothing
+    });
+
+  }
 
   if(message.author.bot) return;
   if(message.channel.type == "dm") return;
 
   let client = message.client;
   let crossBox = client.guilds.get("361313224001585155").emojis.get("428798155035770881");
+  let permlevel = 0;
 
-  /*sql.query(`SELECT * FROM globalusers where userId = '${message.author.id}'`, function(err, results, fields) {
+  let bhUser = client.guilds.get("361313224001585155").members.get(message.author.id);
+
+  if(bhUser) {
+
+    if(bhUser.highestRole.id == "458806099995262986") {
+
+      permlevel = 4;
+
+    }
+
+    if(bhUser.highestRole.id == "417447034551795723") {
+
+      permlevel = 3;
+
+    }
+
+    if(bhUser.highestRole.id == "417446120990703618") {
+
+      permlevel = 2;
+
+    }
+
+    if(bhUser.highestRole.id == "383362758252429312" || bhUser.highestRole.id == "417436911800418306") {
+
+      permlevel = 1;
+
+    }
+
+  }
+
+  sql.query(`SELECT * FROM globalusers where userId = '${message.author.id}'`, function(err, results, fields) {
 
     if(results.length == 0) {
 
-      let permlevel = 0;
-      let bhUser = client.guilds.get("361313224001585155").members.get(message.author.id);
+      let post = {userId: message.author.id, permissionLevel: permlevel}
 
-      if(bhUser) {
+      sql.query(`INSERT INTO globalusers ?`, [post], function(err1, results1, fields) {
 
-        console.log(bhUser.highestRole.id)
-
-        if(bhUser.highestRole.id == "458806099995262986") {
-
-          permlevel = 4;
-
+        if(err) {
+          throw err;
         }
 
-        if(bhUser.highestRole.id == "417447034551795723") {
+      });
 
-          permlevel = 3;
+    } else {
 
-        }
+      if(permlevel != results[0].permissionLevel) {
 
-        if(bhUser.highestRole.id == "417446120990703618") {
+        let post = {permissionLevel: permlevel};
 
-          permlevel = 2;
+        sql.query(`UPDATE globalusers ? WHERE userId='${message.author.id}'`, [post], function(err2, results2, fields) {
 
-        }
+          if(err) {
 
-        if(bhUser.highestRole.id == "383362758252429312" || bhUser.highestRole.id == "417436911800418306") {
+            throw err;
 
-          permLevel = 1;
+          }
 
-        }
+        });
 
       }
 
     }
 
-  });*/
+  });
 
   const argsTemp = message.content.split(' ');
 
@@ -77,16 +111,9 @@ module.exports = (Discord, message, sql) => {
 
     if(cmd) {
 
-      if(message.channel.id == "425076843419533323" && command != "terminate") {
+      if(message.channel.id == "425076843419533323" && command.toLowerCase() != "terminate") {
 
-        message.channel.send(`${crossBox} | **${message.author.username}**, ${languageFile.cmdCannotBeUsedHere}`).then(msg => {
-
-          msg.delete(15000);
-
-        });
-
-        message.delete(15000);
-
+        message.channel.send(`${crossBox} | **${message.author.username}**, ${languageFile.cmdCannotBeUsedHere}`);
         return;
 
       }
@@ -94,6 +121,13 @@ module.exports = (Discord, message, sql) => {
       if(!cmd.conf.enabled) {
 
         message.channel.send(`${crossBox} | **${message.author.username}**, ${languageFile.cmdDisabled}`);
+        return;
+
+      }
+
+      if(permlevel < cmd.conf.permissionLevel) {
+
+        message.channel.send(`${crossBox} | **${message.author.username}**, ${languageFile.cmdInsufficientPermLevel}`);
         return;
 
       }
@@ -107,51 +141,37 @@ module.exports = (Discord, message, sql) => {
 
     if(message.content.toLowerCase() == "0") {
 
-      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option0}`).then(msg => {
-
-        msg.delete(15000);
-
-      });
+      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option0}`);
 
     } else if(message.content.toLowerCase() == "1") {
 
-      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option1}`).then(msg => {
-
-        msg.delete(15000);
-
-      });
+      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option1}`);
 
     } else if(message.content.toLowerCase() == "2") {
 
       message.member.addRole('425074050994405376');
 
-      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option2.replace('{a}', message.guild.channels.get("424875126375317505"))}`).then(msg => {
-
-        msg.delete(15000);
-
-      });
+      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option2.replace('{a}', message.guild.channels.get("424875126375317505"))}`);
 
     } else if(message.content.toLowerCase() == "3") {
 
-      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option3}`).then(msg => {
-
-        msg.delete(15000);
-
-      });
+      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option3}`);
 
     } else if(message.content.toLowerCase() == "4") {
 
       message.member.addRole('425074082187444235');
-
-      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option4.replace('{a}', message.guild.channels.get("424876354031583232"))}`).then(msg => {
-
-        msg.delete(15000);
-
-      });
+      message.channel.send(`:information_source: | **${message.author.username}**, ${languageFile.option4.replace('{a}', message.guild.channels.get("424876354031583232"))}`);
 
     }
 
-    message.delete(15000);
+  } else if(message.channel.id == "424875107392159744") {
+
+    message.react(message.guild.emojis.get("425075533295124481")).then(reaction => {
+
+      message.react(message.guild.emojis.get("425075542862331915"));
+      return;
+
+    });
 
   }
 

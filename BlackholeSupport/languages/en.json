@@ -1,5 +1,6 @@
 {
   "cmdDisabled": "this command has been internally disabled.",
+  "cmdInsufficientPermLevel": "you do not have a high enough permission level for this command",
   "cmdWrongChannel": "this command can only be used in",
   "cmdIncorrectUsage": "incorrect usage.",
   "cmdCannotBeUsedHere": "this command cannot be used here.",
